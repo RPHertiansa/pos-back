@@ -178,7 +178,7 @@ const users = {
                               name : userData.name,
                             },
                             JWT_KEY,
-                            { expiresIn: 120 },
+                            { expiresIn: 60000000 },
     
                             (err, token) => {
                                 if (err) {
@@ -232,7 +232,7 @@ const users = {
         const refreshToken = req.body.refreshToken
         usersModel.checkRefreshToken(refreshToken)
         .then((result)=>{
-            if(result.length >=1){
+            if(result.length >= 1){
                 const userData = result[0];
                 const newToken = jwt.sign(
                     {
