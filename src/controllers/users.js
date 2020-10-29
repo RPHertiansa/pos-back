@@ -60,21 +60,21 @@ const users = {
                             margin: 0;
                         }
                         .footer{
-                        background-color: #7E98DF !important;
+                        background-color: #F24F8A !important;
                         color: white;
                         padding: 25px;
                         }
                         .jumbotron {
                             border-radius: 0% !important;
                             padding: 25px;
-                            background-color: #E5E5E5;
+                            background-color: #57CAD5;
                             color: black;
                         }
                         .btn {
                             padding: 5px;
-                            border: 1px solid #7E98DF;
+                            border: 1px solid #F24F8A;
                             border-radius: 25px;
-                            background-color: #7E98DF;
+                            background-color: #F24F8A;
                             color: white;
                             text-align: center;
                             width: 200px;
@@ -97,10 +97,9 @@ const users = {
                                 <button class="btn"><a role="button" href="${url}users/verify/${hashWord}" style="text-decoration: none; color: white;">Activate</a></button>
                             </div>
                             <div class="footer">
-                                <img src="http://drive.google.com/uc?export=view&id=1LoR-CMdRYLd_K1hWxZeupB01Htqg1wJO" alt="" style="width: 70px;">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>In euismod ipsum et dui rhoncus auctor.</p>
                                 <hr style="background-color: white;">
-                                <p>2020 Telegram. All right reserved</p>
+                                <p>2020 Food POS App. All right reserved</p>
                             </div>
                         </div
                         
