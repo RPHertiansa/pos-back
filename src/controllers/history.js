@@ -1,7 +1,6 @@
 const historyModel = require('../models/history');
 const {success, failed, successWithMeta} = require('../helpers/response')
-const redis = require ('redis')
-const client = redis.createClient()
+
 
 const history = {
     getAll: (req, res) => {
@@ -15,8 +14,7 @@ const history = {
             const offset = page === 1 ? 0 : (page-1)*limit
             historyModel.getAll(cashier, sort, type, limit, offset)
             .then((result) => {     
-                client.set('historyKey', JSON.stringify(result))
-                const totalData = result[0].count
+                
                 const meta = {
                     totalData,
                     totalPage: Math.ceil(totalData/limit),
@@ -36,7 +34,7 @@ const history = {
             const id = req.params.id
             historyModel.getDetail(id)
             .then((result) => {
-                client.del('historyKey')
+                
                 success(res, result, "Here is the history you search")
             })
             .catch((err) => {
@@ -51,7 +49,7 @@ const history = {
             const body = req.body
             historyModel.insert(body)  
             .then((result) => {
-                client.del('historyKey')
+                
                 const masterId = result.insertId
                 const addDetail = body.detail.map((item) => {
                     item.id_transaction = masterId
@@ -75,7 +73,7 @@ const history = {
             const body = req.body
             historyModel.update(body, id)
             .then((result) => {
-                client.del('historyKey')
+                
                 success(res, result, 'history is updated')
             })
             .catch((err) => {
@@ -90,7 +88,7 @@ const history = {
             const id = req.params.id
             historyModel.delete(id)
             .then((result) => {
-                client.del('historyKey')
+                
                 success(res, result, 'history is deleted!')
             })
             .catch((err) => {

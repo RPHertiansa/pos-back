@@ -1,7 +1,6 @@
 const categoryModel = require('../models/category');
 const {success, failed, successWithMeta} = require('../helpers/response');
-const redis = require ('redis')
-const client = redis.createClient()
+
 
 const category = {
     getAll: (req, res) => {
@@ -15,7 +14,7 @@ const category = {
             categoryModel.getAll(category, sort, type, limit, offset)
             .then((result) => {
                 
-                client.set('categoryKey', JSON.stringify(result))
+               
                 const totalData = result[0].count
                 const meta = {
                     totalData,
@@ -36,7 +35,7 @@ const category = {
             const id = req.params.id
             categoryModel.getDetail(id)
             .then((result) => {
-                client.del('categoryKey')
+                
                 success(res, result, "Here is the category you search")
             })
             .catch((err) => {
@@ -51,7 +50,7 @@ const category = {
             const body = req.body
             categoryModel.insert(body)
             .then((result) => {
-                client.del('categoryKey')
+                
                 success(res, result, 'category is inserted')
             })
             .catch((err) =>{
@@ -67,7 +66,7 @@ const category = {
             const body = req.body
             categoryModel.update(body, id)
             .then((result) => {
-                client.del('categoryKey')
+                
                 success(res, result, 'category is updated')
             })
             .catch((err) => {
@@ -82,7 +81,7 @@ const category = {
             const id = req.params.id
             categoryModel.delete(id)
             .then((result) => {
-                client.del('categoryKey')
+                
                 success(res, result, 'category is deleted!')
             })
             .catch((err) => {
